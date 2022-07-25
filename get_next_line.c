@@ -6,13 +6,13 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:31:41 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/25 18:59:05 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/25 20:08:42 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*ft_new_left_str(char *left)
+char	*ft_new_left_str(char *left)
 {
 	int		i;
 	int		j;
@@ -41,7 +41,7 @@ static char	*ft_new_left_str(char *left)
 	return (str);
 }
 
-static char	*ft_get_line(char *left)
+char	*ft_get_line(char *left)
 {
 	int		i;
 	char	*str;
@@ -69,7 +69,7 @@ static char	*ft_get_line(char *left)
 	return (str);
 }
 
-static char	*ft_read_to_left_str(int fd, char *left)
+char	*ft_read_to_left_str(int fd, char *left)
 {
 	int		rd_bytes;
 	char	*tmp;
