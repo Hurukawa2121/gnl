@@ -6,13 +6,13 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:32:58 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/25 18:50:31 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/25 20:07:11 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*ft_strncpy(char *s, const char *t, size_t n)
+char	*ft_strncpy(char *s, const char *t, size_t n)
 {
 	size_t	i;
 
@@ -25,7 +25,7 @@ static char	*ft_strncpy(char *s, const char *t, size_t n)
 	s[i] = '\0';
 	return (s);
 }
-static char	*ft_strdup(const char *s)
+char	*ft_strdup(const char *s)
 {
 	size_t	i;
 	char	*ans;
