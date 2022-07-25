@@ -6,7 +6,7 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:32:58 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/25 20:42:07 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/25 20:48:22 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ size_t	ft_strlen(const char *a)
 		i++;
 	return (i);
 }
-char	*ft_strncpy(char *s, const char *t, size_t n)
+static char	*ft_strncpy(char *s, const char *t, size_t n)
 {
 	size_t	i;
 
@@ -34,7 +34,19 @@ char	*ft_strncpy(char *s, const char *t, size_t n)
 	s[i] = '\0';
 	return (s);
 }
-char	*ft_strdup(const char *s)
+static void	ft_strcpy(char *s, const char *t)
+{
+	int	i;
+
+	i = 0;
+	while (t[i])
+	{
+		s[i] = t[i];
+		i++;
+	}
+	s[i] = '\0';
+}
+static char	*ft_strdup(const char *s)
 {
 	size_t	i;
 	char	*ans;
@@ -45,7 +57,7 @@ char	*ft_strdup(const char *s)
 	ans = malloc(sizeof(char) * (i + 1));
 	if (!ans)
 		return (NULL);
-	ft_strncpy(ans, s, i + 1);
+	ft_strcpy(ans, s);
 	return (ans);
 }
 char	*ft_strchr(const char *s, int c)
