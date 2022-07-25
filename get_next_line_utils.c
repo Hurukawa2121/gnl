@@ -6,7 +6,7 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:32:58 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/25 20:48:22 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/25 20:49:30 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,6 @@ size_t	ft_strlen(const char *a)
 	while (a[i])
 		i++;
 	return (i);
-}
-static char	*ft_strncpy(char *s, const char *t, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	while (t[i] && i < n)
-	{
-		s[i] = t[i];
-		i++;
-	}
-	s[i] = '\0';
-	return (s);
 }
 static void	ft_strcpy(char *s, const char *t)
 {
