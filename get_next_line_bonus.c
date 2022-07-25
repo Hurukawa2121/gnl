@@ -6,7 +6,7 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:31:41 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/25 16:18:45 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/25 18:20:51 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ char	*get_next_line(int fd)
 	left_str[fd] = ft_new_left_str(left_str[fd]);
 	return (ans);
 }
-
+/*
 #include <fcntl.h>
 #include <stdio.h>
 int	main(void)
@@ -125,3 +125,4 @@ int	main(void)
 	free(a);
 	return (0);
 }
+*/
