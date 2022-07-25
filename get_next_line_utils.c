@@ -6,7 +6,7 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:32:58 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/25 20:52:46 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/25 20:54:43 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 }
 */
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
 	int	i;
 
@@ -107,7 +107,7 @@ char	*ft_strchr(const char *s, int c)
 	return (0);
 }
 
-char	*ft_strjoin(char const *left_str, char const *buff)
+char	*ft_strjoin(char *left_str, char *buff)
 {
 	size_t	i;
 	size_t	j;
@@ -116,7 +116,7 @@ char	*ft_strjoin(char const *left_str, char const *buff)
 	if (!left_str)
 	{
 		left_str = (char *)malloc(1 * sizeof(char));
-		((char *)left_str)[0] = '\0';
+		left_str[0] = '\0';
 	}
 	if (!left_str || !buff)
 		return (NULL);
