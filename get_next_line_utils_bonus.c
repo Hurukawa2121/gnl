@@ -6,11 +6,11 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:32:58 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/25 19:01:40 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/25 19:50:26 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*ft_strncpy(char *s, const char *t, size_t n)
 {
