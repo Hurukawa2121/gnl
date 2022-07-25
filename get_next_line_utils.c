@@ -6,13 +6,22 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:32:58 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/25 20:32:27 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/25 20:42:07 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*ft_strncpy(char *s, char *t, size_t n)
+size_t	ft_strlen(const char *a)
+{
+	size_t	i;
+
+	i = 0;
+	while (a[i])
+		i++;
+	return (i);
+}
+char	*ft_strncpy(char *s, const char *t, size_t n)
 {
 	size_t	i;
 
@@ -25,7 +34,7 @@ static char	*ft_strncpy(char *s, char *t, size_t n)
 	s[i] = '\0';
 	return (s);
 }
-static char	*ft_strdup(char *s)
+char	*ft_strdup(const char *s)
 {
 	size_t	i;
 	char	*ans;
@@ -39,16 +48,7 @@ static char	*ft_strdup(char *s)
 	ft_strncpy(ans, s, i + 1);
 	return (ans);
 }
-size_t	ft_strlen(char *a)
-{
-	size_t	i;
-
-	i = 0;
-	while (a[i])
-		i++;
-	return (i);
-}
-char	*ft_strchr(char *s, int c)
+char	*ft_strchr(const char *s, int c)
 {
 	int	i;
 
@@ -56,14 +56,14 @@ char	*ft_strchr(char *s, int c)
 	while (s[i])
 	{
 		if (s[i] == (char)c)
-			return (s + i);
+			return ((char *)(s + i));
 		i++;
 	}
 	if (s[i] == (char)c)
-		return (s + i);
+		return ((char *)(s + i));
 	return (NULL);
 }
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int i;
 	int j;
