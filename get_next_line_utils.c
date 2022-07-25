@@ -6,7 +6,7 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:32:58 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/25 20:49:30 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/25 20:52:46 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ size_t	ft_strlen(const char *a)
 		i++;
 	return (i);
 }
+/*
 static void	ft_strcpy(char *s, const char *t)
 {
 	int	i;
@@ -85,4 +86,51 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		ans[i + j] = s2[j];
 	ans[i + j] = '\0';
 	return (ans);
+}
+*/
+
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	if (c == '\0')
+		return ((char *)&s[ft_strlen(s)]);
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char) c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	return (0);
+}
+
+char	*ft_strjoin(char const *left_str, char const *buff)
+{
+	size_t	i;
+	size_t	j;
+	char	*str;
+
+	if (!left_str)
+	{
+		left_str = (char *)malloc(1 * sizeof(char));
+		((char *)left_str)[0] = '\0';
+	}
+	if (!left_str || !buff)
+		return (NULL);
+	str = malloc(sizeof(char) * ((ft_strlen(left_str) + ft_strlen(buff)) + 1));
+	if (str == NULL)
+		return (NULL);
+	i = -1;
+	j = 0;
+	if (left_str)
+		while (left_str[++i] != '\0')
+			str[i] = left_str[i];
+	while (buff[j] != '\0')
+		str[i++] = buff[j++];
+	str[ft_strlen(left_str) + ft_strlen(buff)] = '\0';
+	free(left_str);
+	return (str);
 }
