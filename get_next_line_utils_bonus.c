@@ -6,21 +6,12 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:32:58 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/25 18:21:55 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/25 19:01:40 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *a)
-{
-	size_t	i;
-
-	i = 0;
-	while (a[i])
-		i++;
-	return (i);
-}
 static char	*ft_strncpy(char *s, const char *t, size_t n)
 {
 	size_t	i;
@@ -47,6 +38,15 @@ static char	*ft_strdup(const char *s)
 		return (NULL);
 	ft_strncpy(ans, s, i + 1);
 	return (ans);
+}
+size_t	ft_strlen(const char *a)
+{
+	size_t	i;
+
+	i = 0;
+	while (a[i])
+		i++;
+	return (i);
 }
 char	*ft_strchr(const char *s, int c)
 {

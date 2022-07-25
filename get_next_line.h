@@ -6,12 +6,12 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:33:09 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/25 18:21:14 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/25 18:46:32 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GNL_H
-# define GNL_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # include <stdlib.h>
 # include <unistd.h>

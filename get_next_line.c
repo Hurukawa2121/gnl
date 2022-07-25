@@ -6,76 +6,79 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:31:41 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/25 18:20:40 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/25 18:59:05 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*ft_get_line(char *left_str)
-{
-	int		i;
-	char	*str;
-
-	if (!*left_str)
-		return (NULL);
-	i = 0;
-	while (left_str[i] && left_str[i] != '\n')
-		i++;
-	str = malloc(sizeof(char) * (i + 2));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (left_str[i] && left_str[i] != '\n')
-	{
-		str[i] = left_str[i];
-		i++;
-	}
-	if (left_str[i] == '\n')
-	{
-		str[i] = left_str[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
-}
-
-static char	*ft_new_left_str(char *left_str)
+static char	*ft_new_left_str(char *left)
 {
 	int		i;
 	int		j;
 	char	*str;
 
 	i = 0;
-	while (left_str[i] && left_str[i] != '\n')
+	while (left[i] && left[i] != '\n')
 		i++;
-	if (!left_str[i])
+	if (!left[i])
 	{
-		free(left_str);
+		free(left);
 		return (NULL);
 	}
-	str = malloc(sizeof(char) * (ft_strlen(left_str) - i + 1));
+	str = malloc(sizeof(char) * (ft_strlen(left) - i + 1));
 	if (!str)
 		return (NULL);
 	i++;
 	j = 0;
-	while (left_str[i]) // && left_str[i] != '\n' いらないの？
-		str[j++] = left_str[i++];
+	while (left[i]) // && left[i] != '\n' いらないの？
+	{
+		str[j] = left[i + j];
+		j++;
+	}
 	str[j] = '\0';
-	free(left_str);
+	free(left);
 	return (str);
 }
 
-static char	*ft_read_to_left_str(int fd, char *left_str)
+static char	*ft_get_line(char *left)
 {
-	char	*tmp;
+	int		i;
+	char	*str;
+
+	if (!*left)
+		return (NULL);
+	i = 0;
+	while (left[i] && left[i] != '\n')
+		i++;
+	str = malloc(sizeof(char) * (i + 2));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (left[i] && left[i] != '\n')
+	{
+		str[i] = left[i];
+		i++;
+	}
+	if (left[i] == '\n')
+	{
+		str[i] = left[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+static char	*ft_read_to_left_str(int fd, char *left)
+{
 	int		rd_bytes;
+	char	*tmp;
 
 	tmp = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!tmp)
 		return (NULL);
 	rd_bytes = 1;
-	while (!ft_strchr(left_str, '\n') && rd_bytes)
+	while (!ft_strchr(left, '\n') && rd_bytes)
 	{
 		rd_bytes = read(fd, tmp, BUFFER_SIZE);
 		if (rd_bytes == -1)
@@ -84,24 +87,29 @@ static char	*ft_read_to_left_str(int fd, char *left_str)
 			return (NULL);
 		}
 		tmp[rd_bytes] = '\0';
-		left_str = ft_strjoin(left_str, tmp);
+		left = ft_strjoin(left, tmp);
+		if (!left)
+		{
+			free(tmp);
+			return (NULL);
+		}
 	}
 	free(tmp);
-	return (left_str);
+	return (left);
 }
 
 char	*get_next_line(int fd)
 {
 	char		*ans;
-	static char	*left_str;
+	static char	*left;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	left_str = ft_read_to_left_str(fd, left_str);
-	if (!left_str)
+	left = ft_read_to_left_str(fd, left);
+	if (!left)
 		return (NULL);
-	ans = ft_get_line(left_str);
-	left_str = ft_new_left_str(left_str);
+	ans = ft_get_line(left);
+	left = ft_new_left_str(left);
 	return (ans);
 }
 /*
