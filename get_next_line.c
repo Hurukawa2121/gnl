@@ -6,7 +6,7 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:31:41 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/26 11:16:19 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/26 11:22:26 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,8 @@ char	*ft_left(char *left)
 		return (NULL);
 	i++;
 	j = 0;
-	while (left[i + j])
-	{
-		new_left[j] = left[i + j];
-		j++;
-	}
+	while (left[i])
+		new_left[j++] = left[i++];
 	new_left[j] = '\0';
 	free(left);
 	return (new_left);
