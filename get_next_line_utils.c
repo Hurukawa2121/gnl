@@ -6,7 +6,7 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:32:58 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/26 10:01:42 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/26 10:55:57 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,13 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	j;
 	char	*ans;
 
-	if (!s1 && !s2)
-		return (ft_strdup(""));
 	if (!s1)
-		return (ft_strdup(s2));
-	if (!s2)
-		return (ft_strdup(s1));
+	{
+		s1 = malloc(sizeof(char));
+		s1[0] = '\0';
+	}
+	if (!s1 || !s2)
+		return (NULL);
 	ans = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!ans)
 		return (NULL);
