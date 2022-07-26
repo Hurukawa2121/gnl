@@ -6,7 +6,7 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:31:41 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/26 11:26:51 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/26 11:29:45 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,25 +92,25 @@ char	*ft_save(char *left)
 
 char	*ft_read(int fd, char *left_str)
 {
-	char	*buff;
+	char	*tmp;
 	int		rd_bytes;
 
-	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buff)
+	tmp = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!tmp)
 		return (NULL);
 	rd_bytes = 1;
 	while (!ft_strchr(left_str, '\n') && rd_bytes != 0)
 	{
-		rd_bytes = read(fd, buff, BUFFER_SIZE);
+		rd_bytes = read(fd, tmp, BUFFER_SIZE);
 		if (rd_bytes == -1)
 		{
-			free(buff);
+			free(tmp);
 			return (NULL);
 		}
-		buff[rd_bytes] = '\0';
-		left_str = ft_strjoin(left_str, buff);
+		tmp[rd_bytes] = '\0';
+		left_str = ft_strjoin(left_str, tmp);
 	}
-	free(buff);
+	free(tmp);
 	return (left_str);
 }
 
