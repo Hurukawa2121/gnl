@@ -6,7 +6,7 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:31:41 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/26 11:41:58 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/26 11:43:30 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*ft_save(char *left)
 	return (save);
 }
 
-char	*ft_read(int fd, char *left)
+/*char	*ft_read(int fd, char *left)
 {
 	char	*tmp;
 	int		rd_size;
@@ -75,7 +75,7 @@ char	*ft_read(int fd, char *left)
 	if (!tmp)
 		return (NULL);
 	rd_size = 1;
-	while (!ft_strchr(left, '\n') && rd_size)
+	while (!ft_strchr(left, '\n') && !rd_size)
 	{
 		rd_size = read(fd, tmp, BUFFER_SIZE);
 		if (rd_size == -1)
@@ -88,7 +88,32 @@ char	*ft_read(int fd, char *left)
 	}
 	free(tmp);
 	return (left);
+}*/
+
+char	*ft_read(int fd, char *left_str)
+{
+	char	*tmp;
+	int		rd_bytes;
+
+	tmp = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!tmp)
+		return (NULL);
+	rd_bytes = 1;
+	while (!ft_strchr(left_str, '\n') && rd_bytes != 0)
+	{
+		rd_bytes = read(fd, tmp, BUFFER_SIZE);
+		if (rd_bytes == -1)
+		{
+			free(tmp);
+			return (NULL);
+		}
+		tmp[rd_bytes] = '\0';
+		left_str = ft_strjoin(left_str, tmp);
+	}
+	free(tmp);
+	return (left_str);
 }
+
 
 char	*get_next_line(int fd)
 {
@@ -102,8 +127,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	ans = ft_save(left);
 	left = ft_left(left);
-	if (!left)
-		return (NULL);
+	/*if (!left)
+		return (NULL);*/
 	return (ans);
 }
 /*
