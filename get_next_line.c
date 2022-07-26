@@ -6,7 +6,7 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:31:41 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/26 10:45:33 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/26 10:52:26 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,6 @@ static char	*ft_read(int fd, char *left)
 		}
 		tmp[rd_size] = '\0';
 		left = ft_strjoin(left, tmp);
-		if (!left)
-		{
-			free (tmp);
-			return (NULL);
-		}
 	}
 	free(tmp);
 	return (left);
