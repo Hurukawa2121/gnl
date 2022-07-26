@@ -6,103 +6,108 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:31:41 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/25 20:20:36 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/26 10:00:50 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_get_line(char *left_str)
+static char	*ft_get_line(char *left)
 {
 	int		i;
 	char	*str;
 
 	i = 0;
-	if (!left_str[i])
+	if (!left[i])
 		return (NULL);
-	while (left_str[i] && left_str[i] != '\n')
+	while (left[i] && left[i] != '\n')
 		i++;
 	str = (char *)malloc(sizeof(char) * (i + 2));
 	if (!str)
 		return (NULL);
 	i = 0;
-	while (left_str[i] && left_str[i] != '\n')
+	while (left[i] && left[i] != '\n')
 	{
-		str[i] = left_str[i];
+		str[i] = left[i];
 		i++;
 	}
-	if (left_str[i] == '\n')
+	if (left[i] == '\n')
 	{
-		str[i] = left_str[i];
+		str[i] = left[i];
 		i++;
 	}
 	str[i] = '\0';
 	return (str);
 }
 
-char	*ft_new_left_str(char *left_str)
+static char	*ft_new_left_str(char *left)
 {
 	int		i;
 	int		j;
 	char	*str;
 
 	i = 0;
-	while (left_str[i] && left_str[i] != '\n')
+	while (left[i] && left[i] != '\n')
 		i++;
-	if (!left_str[i])
+	if (!left[i])
 	{
-		free(left_str);
+		free(left);
 		return (NULL);
 	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen(left_str) - i + 1));
+	str = (char *)malloc(sizeof(char) * (ft_strlen(left) - i + 1));
 	if (!str)
 		return (NULL);
 	i++;
 	j = 0;
-	while (left_str[i])
-		str[j++] = left_str[i++];
+	while (left[i])
+		str[j++] = left[i++];
 	str[j] = '\0';
-	free(left_str);
+	free(left);
 	return (str);
 }
 
-char	*ft_read_to_left_str(int fd, char *left_str)
+static char	*ft_read_to_left_str(int fd, char *left)
 {
-	char	*buff;
+	char	*buf;
 	int		rd_bytes;
 
-	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buff)
+	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buf)
 		return (NULL);
 	rd_bytes = 1;
-	while (!ft_strchr(left_str, '\n') && rd_bytes != 0)
+	while (!ft_strchr(left, '\n') && !rd_bytes)
 	{
-		rd_bytes = read(fd, buff, BUFFER_SIZE);
+		rd_bytes = read(fd, buf, BUFFER_SIZE);
 		if (rd_bytes == -1)
 		{
-			free(buff);
+			free(buf);
 			return (NULL);
 		}
-		buff[rd_bytes] = '\0';
-		left_str = ft_strjoin(left_str, buff);
+		buf[rd_bytes] = '\0';
+		left = ft_strjoin(left, buf);
+		if (!left)
+		{
+			free (left);
+			return (NULL);
+		}
 	}
-	free(buff);
-	return (left_str);
+	free(buf);
+	return (left);
 }
 
 char	*get_next_line(int fd)
 {
-	char		*line;
-	static char	*left_str;
+	char		*ans;
+	static char	*left;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
-	left_str = ft_read_to_left_str(fd, left_str);
-	if (!left_str)
 		return (NULL);
-	line = ft_get_line(left_str);
-	left_str = ft_new_left_str(left_str);
-	return (line);
+	left = ft_read_to_left_str(fd, left);
+	if (!left)
+		return (NULL);
+	ans = ft_get_line(left);
+	left = ft_new_left_str(left);
+	return (ans);
 }
 /*
 #include <fcntl.h>
