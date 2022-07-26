@@ -6,7 +6,7 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:32:58 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/25 20:54:43 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/26 09:47:55 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ size_t	ft_strlen(const char *a)
 		i++;
 	return (i);
 }
-/*
+
 static void	ft_strcpy(char *s, const char *t)
 {
 	int	i;
@@ -48,6 +48,7 @@ static char	*ft_strdup(const char *s)
 	ft_strcpy(ans, s);
 	return (ans);
 }
+/*
 char	*ft_strchr(const char *s, int c)
 {
 	int	i;
@@ -107,30 +108,30 @@ char	*ft_strchr(char *s, int c)
 	return (0);
 }
 
-char	*ft_strjoin(char *left_str, char *buff)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	i;
 	size_t	j;
-	char	*str;
+	char	*ans;
 
-	if (!left_str)
-	{
-		left_str = (char *)malloc(1 * sizeof(char));
-		left_str[0] = '\0';
-	}
-	if (!left_str || !buff)
-		return (NULL);
-	str = malloc(sizeof(char) * ((ft_strlen(left_str) + ft_strlen(buff)) + 1));
-	if (str == NULL)
+	if (!s1 && !s2)
+		return (ft_strdup(""));
+	if (!s1)
+		return (ft_strdup(s2));
+	if (!s2)
+		return (ft_strdup(s1));
+	/*if (!s1 || !s2)
+		return (NULL);*/
+	ans = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!ans)
 		return (NULL);
 	i = -1;
-	j = 0;
-	if (left_str)
-		while (left_str[++i] != '\0')
-			str[i] = left_str[i];
-	while (buff[j] != '\0')
-		str[i++] = buff[j++];
-	str[ft_strlen(left_str) + ft_strlen(buff)] = '\0';
-	free(left_str);
-	return (str);
+	while (s1[++i])
+		ans[i] = s1[i];
+	j = -1;
+	while (s2[++j])
+		ans[i + j] = s2[j];
+	ans[i + j] = '\0';
+	free(s1);
+	return (ans);
 }
