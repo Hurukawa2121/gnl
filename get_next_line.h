@@ -6,7 +6,7 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:33:09 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/26 11:34:11 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/26 11:35:11 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
+#  define BUFFER_SIZE 256
 # endif
 
 char	*get_next_line(int fd);

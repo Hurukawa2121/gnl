@@ -6,7 +6,7 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:31:41 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/26 11:34:04 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/26 11:35:05 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ char	*get_next_line(int fd)
 		return (NULL);
 	ans = ft_save(left);
 	left = ft_left(left);
-	/*if (!left)
-		return (NULL);*/
+	if (!left)
+		return (NULL);
 	return (ans);
 }
 /*
