@@ -6,7 +6,7 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:31:41 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/26 13:54:21 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/26 16:53:06 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,11 @@ static char	*ft_left(char *left)
 		return (NULL);
 	i++;
 	j = 0;
-	while (left[i])
-		new_left[j++] = left[i++];
+	while (left[i + j])
+	{
+		new_left[j] = left[i + j];
+		j++;
+	}
 	new_left[j] = '\0';
 	free(left);
 	return (new_left);
@@ -93,7 +96,7 @@ static char	*ft_read(int fd, char *left)
 char	*get_next_line(int fd)
 {
 	char		*ans;
-	static char	*left[256];
+	static char	*left[1024];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
