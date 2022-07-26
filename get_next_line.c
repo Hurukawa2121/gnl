@@ -6,7 +6,7 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:31:41 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/26 11:45:17 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/26 11:46:10 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,30 +65,6 @@ char	*ft_save(char *left)
 	save[i] = '\0';
 	return (save);
 }
-
-/*char	*ft_read(int fd, char *left)
-{
-	char	*tmp;
-	int		rd_size;
-
-	tmp = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!tmp)
-		return (NULL);
-	rd_size = 1;
-	while (!ft_strchr(left, '\n') && !rd_size)
-	{
-		rd_size = read(fd, tmp, BUFFER_SIZE);
-		if (rd_size == -1)
-		{
-			free(tmp);
-			return (NULL);
-		}
-		tmp[rd_size] = '\0';
-		left = ft_strjoin(left, tmp);
-	}
-	free(tmp);
-	return (left);
-}*/
 
 char	*ft_read(int fd, char *left)
 {
