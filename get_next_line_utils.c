@@ -6,38 +6,12 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:32:58 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/26 10:55:57 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/26 10:56:54 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static void	ft_strcpy(char *s, const char *t)
-{
-	int	i;
-
-	i = 0;
-	while (t[i])
-	{
-		s[i] = t[i];
-		i++;
-	}
-	s[i] = '\0';
-}
-static char	*ft_strdup(const char *s)
-{
-	size_t	i;
-	char	*ans;
-
-	i = 0;
-	while (s[i])
-		i++;
-	ans = malloc(sizeof(char) * (i + 1));
-	if (!ans)
-		return (NULL);
-	ft_strcpy(ans, s);
-	return (ans);
-}
 size_t	ft_strlen(const char *a)
 {
 	size_t	i;
