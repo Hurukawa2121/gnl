@@ -6,7 +6,7 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:31:41 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/26 11:39:12 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/26 11:40:48 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	left[fd] = ft_read(fd, left[fd]);
-	if (!left)
+	if (!left[fd])
 		return (NULL);
 	ans = ft_save(left[fd]);
 	left[fd] = ft_left(left[fd]);
