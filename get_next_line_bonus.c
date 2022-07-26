@@ -6,13 +6,13 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:31:41 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/26 11:40:48 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/26 11:48:31 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_left(char *left)
+static char	*ft_left(char *left)
 {
 	int		i;
 	int		j;
@@ -38,7 +38,7 @@ char	*ft_left(char *left)
 	return (new_left);
 }
 
-char	*ft_save(char *left)
+static char	*ft_save(char *left)
 {
 	int		i;
 	char	*save;
@@ -66,12 +66,12 @@ char	*ft_save(char *left)
 	return (save);
 }
 
-char	*ft_read(int fd, char *left)
+static char	*ft_read(int fd, char *left)
 {
 	char	*tmp;
 	int		rd_size;
 
-	tmp = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	tmp = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!tmp)
 		return (NULL);
 	rd_size = 1;
