@@ -6,7 +6,7 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:33:09 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/26 11:35:11 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/26 11:39:48 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # endif
 
 char	*get_next_line(int fd);
+char	*ft_read(int fd, char *left);
+char	*ft_save(char *left);
+char	*ft_left(char *left);
 size_t	ft_strlen(const char *a);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char *s1, char *s2);
