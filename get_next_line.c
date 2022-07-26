@@ -6,7 +6,7 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:31:41 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/26 11:47:30 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/26 13:54:04 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,6 @@ char	*get_next_line(int fd)
 		return (NULL);
 	ans = ft_save(left);
 	left = ft_left(left);
-	/*if (!left)
-		return (NULL);*/
 	return (ans);
 }
 /*
@@ -111,8 +109,8 @@ char	*get_next_line(int fd)
 #include <stdio.h>
 int	main(void)
 {
-	int fd;
-	char **a;
+	int		fd;
+	char	**a;
 
 	a = malloc(sizeof(char *) * 3);
 	fd = open("./testfile", O_WRONLY | O_CREAT, S_IRWXU | S_IRWXG | S_IRWXO);
@@ -126,19 +124,5 @@ int	main(void)
 		return (1);
 	free(a);
 	return (0);
-}
-char	*get_next_line(int fd)
-{
-	char		*ans;
-	static char	*left_str[256];
-
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	left_str[fd] = ft_read(fd, left_str[fd]);
-	if (!left_str[fd])
-		return (NULL);
-	ans = ft_save(left_str[fd]);
-	left_str[fd] = ft_left(left_str[fd]);
-	return (ans);
 }
 */
