@@ -6,21 +6,11 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:32:58 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/26 09:51:58 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/26 09:54:17 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-size_t	ft_strlen(const char *a)
-{
-	size_t	i;
-
-	i = 0;
-	while (a[i])
-		i++;
-	return (i);
-}
 
 static void	ft_strcpy(char *s, const char *t)
 {
@@ -48,24 +38,15 @@ static char	*ft_strdup(const char *s)
 	ft_strcpy(ans, s);
 	return (ans);
 }
-/*
-char	*ft_strchr(const char *s, int c)
+size_t	ft_strlen(const char *a)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (s[i])
-	{
-		if (s[i] == (char)c)
-			return ((char *)(s + i));
+	while (a[i])
 		i++;
-	}
-	if (s[i] == (char)c)
-		return ((char *)(s + i));
-	return (NULL);
+	return (i);
 }
-*/
-
 char	*ft_strchr(char *s, int c)
 {
 	int	i;
@@ -83,7 +64,6 @@ char	*ft_strchr(char *s, int c)
 		return ((char *)(s + i));
 	return (NULL);
 }
-
 char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	i;
