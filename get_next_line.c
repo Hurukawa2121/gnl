@@ -6,45 +6,17 @@
 /*   By: sfurukaw <sfurukaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 14:31:41 by sfurukaw          #+#    #+#             */
-/*   Updated: 2022/07/26 10:00:50 by sfurukaw         ###   ########.fr       */
+/*   Updated: 2022/07/26 10:45:33 by sfurukaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*ft_get_line(char *left)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	if (!left[i])
-		return (NULL);
-	while (left[i] && left[i] != '\n')
-		i++;
-	str = (char *)malloc(sizeof(char) * (i + 2));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (left[i] && left[i] != '\n')
-	{
-		str[i] = left[i];
-		i++;
-	}
-	if (left[i] == '\n')
-	{
-		str[i] = left[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
-}
-
-static char	*ft_new_left_str(char *left)
+static char	*ft_left(char *left)
 {
 	int		i;
 	int		j;
-	char	*str;
+	char	*new_left;
 
 	i = 0;
 	while (left[i] && left[i] != '\n')
@@ -54,44 +26,75 @@ static char	*ft_new_left_str(char *left)
 		free(left);
 		return (NULL);
 	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen(left) - i + 1));
-	if (!str)
+	new_left = malloc(sizeof(char) * (ft_strlen(left) - i + 1));
+	if (!new_left)
 		return (NULL);
 	i++;
 	j = 0;
-	while (left[i])
-		str[j++] = left[i++];
-	str[j] = '\0';
+	while (left[i + j])
+	{
+		new_left[j] = left[i + j];
+		j++;
+	}
+	new_left[j] = '\0';
 	free(left);
-	return (str);
+	return (new_left);
 }
 
-static char	*ft_read_to_left_str(int fd, char *left)
+static char	*ft_save(char *left)
 {
-	char	*buf;
-	int		rd_bytes;
+	int		i;
+	char	*save;
 
-	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buf)
+	if (!left[0])
 		return (NULL);
-	rd_bytes = 1;
-	while (!ft_strchr(left, '\n') && !rd_bytes)
+	i = 0;
+	while (left[i] && left[i] != '\n')
+		i++;
+	save = malloc(sizeof(char) * (i + 2));
+	if (!save)
+		return (NULL);
+	i = 0;
+	while (left[i] && left[i] != '\n')
 	{
-		rd_bytes = read(fd, buf, BUFFER_SIZE);
-		if (rd_bytes == -1)
+		save[i] = left[i];
+		i++;
+	}
+	if (left[i] == '\n')
+	{
+		save[i] = left[i];
+		i++;
+	}
+	save[i] = '\0';
+	return (save);
+}
+
+static char	*ft_read(int fd, char *left)
+{
+	char	*tmp;
+	int		rd_size;
+
+	tmp = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!tmp)
+		return (NULL);
+	rd_size = 1;
+	while (!ft_strchr(left, '\n') && !rd_size)
+	{
+		rd_size = read(fd, tmp, BUFFER_SIZE);
+		if (rd_size == -1)
 		{
-			free(buf);
+			free(tmp);
 			return (NULL);
 		}
-		buf[rd_bytes] = '\0';
-		left = ft_strjoin(left, buf);
+		tmp[rd_size] = '\0';
+		left = ft_strjoin(left, tmp);
 		if (!left)
 		{
-			free (left);
+			free (tmp);
 			return (NULL);
 		}
 	}
-	free(buf);
+	free(tmp);
 	return (left);
 }
 
@@ -102,11 +105,13 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	left = ft_read_to_left_str(fd, left);
+	left = ft_read(fd, left);
 	if (!left)
 		return (NULL);
-	ans = ft_get_line(left);
-	left = ft_new_left_str(left);
+	ans = ft_save(left);
+	left = ft_left(left);
+	/*if (!left)
+		return (NULL);*/
 	return (ans);
 }
 /*
@@ -129,5 +134,19 @@ int	main(void)
 		return (1);
 	free(a);
 	return (0);
+}
+char	*get_next_line(int fd)
+{
+	char		*ans;
+	static char	*left_str[256];
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	left_str[fd] = ft_read(fd, left_str[fd]);
+	if (!left_str[fd])
+		return (NULL);
+	ans = ft_save(left_str[fd]);
+	left_str[fd] = ft_left(left_str[fd]);
+	return (ans);
 }
 */
